@@ -52,9 +52,22 @@ add_executable(${PROJECT_NAME}_client ./src/client.cpp)
 add_executable(${PROJECT_NAME}_heart_check ./src/heart_check.cpp)
 
 
-ament_target_dependencies(${PROJECT_NAME}_node rclcpp sensor_msgs visualization_msgs std_srvs geometry_msgs base)    
-ament_target_dependencies(${PROJECT_NAME}_client rclcpp geometry_msgs base)    
-ament_target_dependencies(${PROJECT_NAME}_heart_check rclcpp geometry_msgs std_srvs base)    
+target_link_libraries(${PROJECT_NAME}_node
+  ${rclcpp_TARGETS}
+  ${sensor_msgs_TARGETS}
+  ${visualization_msgs_TARGETS}
+  ${std_srvs_TARGETS}
+  ${geometry_msgs_TARGETS}
+  ${base_TARGETS})
+target_link_libraries(${PROJECT_NAME}_client
+  ${rclcpp_TARGETS}
+  ${geometry_msgs_TARGETS}
+  ${base_TARGETS})
+target_link_libraries(${PROJECT_NAME}_heart_check
+  ${rclcpp_TARGETS}
+  ${geometry_msgs_TARGETS}
+  ${std_srvs_TARGETS}
+  ${base_TARGETS})
 
 
 
